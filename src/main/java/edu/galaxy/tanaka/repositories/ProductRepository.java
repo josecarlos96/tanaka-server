@@ -12,14 +12,12 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
 	List<Product> findByNameLike(String name);
 	List<Product> findByDescriptionLike(String text);
 	
-	List<Product> findByState(boolean state);
+	List<Product> findByState(Boolean state);
 	
-	/*
-	
-	@Query(value="SELECT * FROM tanaka.tbl_product WHERE STATE=1", nativeQuery = true) //SQL
+	@Query(value = "SELECT * FROM tanaka.tbl_products WHERE STATE=1;", nativeQuery = true)	//SQL
 	List<Product> findAllCustomSQL();
 	
-	@Query(value="SELECT p FROM Product p WHERE p.state=true") //jpql
+	@Query(value = "SELECT p FROM Product p WHERE p.state=true")	//jpql
 	List<Product> findAllCustomJPQL();
-	*/
+	
 }
