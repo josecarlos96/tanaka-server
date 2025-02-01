@@ -59,5 +59,14 @@ public class ProductController {
 		product.setId(id);
 		return productRepository.save(product);
 	}
+	
+	/*
+	@PutMapping("{id}")
+	public Product update(Long id, @RequestBody Product product){
+		product.setId(id)
+		return productRepository.save(product);
+	}
+	 */
+	 
 
 }
