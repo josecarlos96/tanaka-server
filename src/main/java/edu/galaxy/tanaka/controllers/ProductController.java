@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -67,6 +69,34 @@ public class ProductController {
 		return productRepository.save(product);
 	}
 	 */
+	
+	@PatchMapping("/{id}")
+	public Product updateStock(@PathVariable Long id, @RequestBody Product product) {
+		Optional<Product> optProduct = productRepository.findById(id);
+		if(optProduct.isPresent()) {
+			Product oProduct = optProduct.get();
+			oProduct.setStock(product.getStock());
+			return productRepository.save(oProduct);
+		} else {
+			throw new RuntimeException("Product not found");
+		}
+	}
+	
+	@DeleteMapping("/{id}")
+	public void hardDelete(@PathVariable Long id) {
+		productRepository.deleteById(id);
+	}
 	 
+	@DeleteMapping("/{id}")
+	public void softDelete(@PathVariable Long id) {
+		Optional<Product> optProduct = productRepository.findById(id);
+		if (optProduct.isPresent()) {
+			Product oProduct = optProduct.get();
+			oProduct.setState(false);
+			productRepository.save(oProduct);
+		} else {
+			throw new RuntimeException("Product not found");
+		}
+	}
 
 }
