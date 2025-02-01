@@ -28,7 +28,7 @@ public class ProductController {
 		return productRepository.findAll();
 	}
 	
-	// /api/v1/products/1
+	// /api/v1/products/2
 	@GetMapping("/{id}")
 	public Optional<Product> findById(@PathVariable Long id) {
 		return productRepository.findById(id);
