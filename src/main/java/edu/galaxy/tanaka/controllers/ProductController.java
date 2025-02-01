@@ -27,7 +27,10 @@ public class ProductController {
 	
 	@GetMapping
 	public List<Product> findAll() {
-		return productRepository.findAll();
+		//return productRepository.findAll();
+		return productRepository.findByState(true);
+		//return productRepository.findAllCustomSQL();
+		//return productRepository.findAllCustomSQL();
 	}
 	
 	// /api/v1/products/2
@@ -81,12 +84,12 @@ public class ProductController {
 			throw new RuntimeException("Product not found");
 		}
 	}
-	
+	/*
 	@DeleteMapping("/{id}")
 	public void hardDelete(@PathVariable Long id) {
 		productRepository.deleteById(id);
 	}
-	 
+	 */
 	@DeleteMapping("/{id}")
 	public void softDelete(@PathVariable Long id) {
 		Optional<Product> optProduct = productRepository.findById(id);
