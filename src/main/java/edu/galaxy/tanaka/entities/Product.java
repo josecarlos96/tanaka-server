@@ -10,6 +10,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
+
 @Entity(name = "Product")
 @Table(name = "tbl_products")
 @Setter
@@ -26,5 +28,7 @@ public class Product {
 	private int stock;
 	private Double precio;
 	private String image;
+	
+
 	
 }
